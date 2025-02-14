@@ -13,14 +13,23 @@ Hoy en día, las florerías necesitan sistemas eficaces para la administración 
 |Eliminar (DELETE)| si      | no               | no
 
 signals.py: crea los grupos y asigna permisos a cada uno:
-Administrador: tiene todos los permisos (add, change, delete y view).
+
+Administrador: tiene todos los permisos (add, change, delete y view)
+
 Editor: solo tiene el permiso change_customuser
+
 Viewer: solo tiene el permiso view_customuser
+
 permissions.py (IsAdminOrEditor) verifica:
+
     si el usuario esta en el grupo Administrador tieneacceso total
+
     si el usuario esta en el grupo Editor y  tiene el permiso change_customuser (solo puede modificar)
-ii el usuario solo tiene permisos de visualización no podr modificar
+
+si el usuario solo tiene permisos de visualización no podr modificar
+
 views.py usa IsAdminOrEditor en UserViewSet en donde se aplicacon los permisos
+
 
 ##estrutura del proyecto 
 
