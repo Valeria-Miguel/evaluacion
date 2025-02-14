@@ -8,11 +8,10 @@ cualquier usuario puede ves la lista
 
 ## OBSERVACIONES O CORRECCIONES
 
-Este endpoint debe retornar todos los registros de flores. Asegúrate de que el modelo Flower tenga los campos adecuados.
+Este endpoint debe retornar todos los registros de flores
 
 ## URL
-
-[URL del endpoint.](http://127.0.0.1:8000/api/flowers/list)
+http://127.0.0.1:8000/api/flowers/list
 
 ## MÉTODO HTTP 
 
