@@ -128,8 +128,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+#configuracion del framework REST para la autenticacion
 REST_FRAMEWORK = {
+    # definimos que el metodo de autenticacion por defecto sera el JWT (JSON Web Token)
+    # el paquete 'rest_framework_simplejwt' se utiliza para manejar los tokens JWT en la autenticacion
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
@@ -143,7 +145,7 @@ SIMPLE_JWT = {
     # Additional settings can be configured here
 }
 
-connect(
-    db='djangodata',
-    host='mongodb+srv://2022371092:ahMic47vqgtfXjA9@cluster0.1aqsi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
-)
+#connect(
+ #   db='djangodata',
+  #  host='mongodb+srv://user:passoword@cluster0.1aqsi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+#)
