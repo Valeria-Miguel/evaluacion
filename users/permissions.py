@@ -2,8 +2,8 @@ from rest_framework import permissions
 
 class IsAdminOrEmpleado(permissions.BasePermission):
     """
-    Permite que solo los administradores y empleados puedan modificar,
-    mientras que los viewers solo pueden ver.
+    permite que solo los administradores y empleados puedan modificar
+    mientras que los viewers solo pueden ver
     """
 
     def has_permission(self, request, view):
@@ -21,7 +21,7 @@ class IsAdminOrEmpleado(permissions.BasePermission):
 
 class IsAdminOnly(permissions.BasePermission):
     """
-    Permite que solo los administradores puedan eliminar.
+    ayuda que solo los administradores puedan eliminar
     """
 
     def has_permission(self, request, view):
@@ -30,8 +30,8 @@ class IsAdminOnly(permissions.BasePermission):
 
 class BasePedidoPermission(permissions.BasePermission):
     """
-    Permite que solo los administradores y empleados puedan modificar pedidos.
-    Los viewers solo pueden ver.
+    ayuda que solo los administradores y empleados puedan modificar pedidos
+    lo s viewers solo pueden ver
     """
 
     def has_permission(self, request, view):
@@ -49,7 +49,7 @@ class BasePedidoPermission(permissions.BasePermission):
 
     def has_object_permission(self, request, view, obj):
         """
-        Verifica si el usuario tiene permisos sobre el objeto específico.
+        verifica si el usuario tiene permisos sobre el objeto específico
         """
         is_admin = request.user.groups.filter(name="Administrador").exists()
         is_empleado = request.user.groups.filter(name="Empleado").exists()

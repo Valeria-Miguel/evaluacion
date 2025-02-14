@@ -4,26 +4,27 @@ from flowers.serializers import FlowerSerializer
 from users.permissions import IsAdminOrEmpleado, IsAdminOnly
 from rest_framework.permissions import IsAuthenticated
 
-# Ver flores (todos los autenticados)
+#vista para listar todas las flores solo los usuarios autenticados
 class FlowerListView(generics.ListAPIView):
-    queryset = Flower.objects.all()
-    serializer_class = FlowerSerializer
-    permission_classes = [IsAuthenticated]  # Todos los autenticados pueden ver
+    queryset = Flower.objects.all() #consulta para obtener todas las flores
+    serializer_class = FlowerSerializer #se usara el serializador 'FlowerSerializer'
+    permission_classes = [IsAuthenticated]   #solo los usuarios autenticados podran acceder
 
-# Crear flor (solo admin y empleado)
+# crear una nueva florsolo admin y empleado
 class FlowerCreateView(generics.CreateAPIView):
     queryset = Flower.objects.all()
     serializer_class = FlowerSerializer
-    permission_classes = [IsAdminOrEmpleado]  # Solo Admin y Empleado pueden crear
+    permission_classes = [IsAdminOrEmpleado]  # solo admin y empleado pueden crear
 
-# Modificar flor (solo admin y empleado)
+#modificar una flor solo admin y empleado
 class FlowerUpdateView(generics.RetrieveUpdateAPIView):
     queryset = Flower.objects.all()
     serializer_class = FlowerSerializer
-    permission_classes = [IsAdminOrEmpleado]  # Solo Admin y Empleado pueden modificar
+    permission_classes = [IsAdminOrEmpleado]   # solo admin y empleado pueden crear
 
-# Eliminar flor (solo admin)
+#eliminar flor solo admin
 class FlowerDeleteView(generics.DestroyAPIView):
     queryset = Flower.objects.all()
     serializer_class = FlowerSerializer
-    permission_classes = [IsAdminOnly]  # Solo Admin puede eliminar
+    permission_classes = [IsAdminOnly]  #solo Admin puede eliminar
+    

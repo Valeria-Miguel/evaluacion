@@ -15,30 +15,30 @@ class IsAdminOrReadOnly(permissions.BasePermission):
 
 class UserViewSet(viewsets.ModelViewSet):
     """
-    Vista para gestionar usuarios:
-    - "Viewer" puede solo ver usuarios.
-    - "Administrador" y "Empleado" pueden crear, actualizar y eliminar usuarios.
+    vista para gestionar usuarios:
+    - Viewer puede solo ver usuarios
+    - Administrador y Empleado pueden crear, actualizar y eliminar usuarios
     """
-    queryset = CustomUser.objects.all()  # Obtiene todos los usuarios
-    serializer_class = UserSerializer  # Usa el serializador de usuarios
-    permission_classes = [IsAdminOrEmpleado]  # Aplicamos el permiso personalizado
+    queryset = CustomUser.objects.all()  #obtiene todos los usuarios
+    serializer_class = UserSerializer  #usa el serializador de usuarios
+    permission_classes = [IsAdminOrEmpleado]  #aplicamos el permiso personalizado
 
     def get_permissions(self):
         """
-        Ajusta los permisos según el método HTTP.
+        ajustamos los permisos d el metodo HTTP.
         """
-        if self.action == 'list':  # Acción GET -> Sin autenticación
-            return [AllowAny()]  # Permitir acceso sin autenticación
-        elif self.action == 'create':  # Acción POST -> Con autenticación
-            return [IsAuthenticated()]  # Solo usuarios autenticados pueden crear usuarios
+        if self.action == 'list':  #acción GET Sin autenticación
+            return [AllowAny()]  # permitir acceso sin autenticación
+        elif self.action == 'create':  #acción POST con autenticación
+            return [IsAuthenticated()]  # solo usuarios autenticados pueden crear usuarios
         else:
-            return super().get_permissions()  # Usar permisos por defecto para otras acciones
+            return super().get_permissions()  #usar permisos por defecto para otras acciones
         
 
 class RegisterView(generics.CreateAPIView):
-    serializer_class = RegisterSerializer  # Usa el serializador de registro
-    permission_classes = [IsAdminOrEmpleado]  # Permitir el registro sin autenticación
+    serializer_class = RegisterSerializer  #usa el serializador de registro
+    permission_classes = [IsAdminOrEmpleado]  #permitir el registro sin autenticación
 
     def post(self, request, *args, **kwargs):
-        print(request.data)  # Imprimir los datos del registro para depuración
+        print(request.data)  # imprimir los datos del registro para depuracion
         return super().post(request, *args, **kwargs)

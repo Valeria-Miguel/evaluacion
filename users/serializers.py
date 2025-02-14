@@ -3,7 +3,7 @@ from .models import CustomUser
 from django.contrib.auth.models import Group
 
 class UserSerializer(serializers.ModelSerializer):
-    role = serializers.CharField(read_only=True)  # Añadimos el campo role como solo lectura
+    role = serializers.CharField(read_only=True)  #añadimos el campo role como solo lectura
 
     class Meta:
         model = CustomUser
@@ -12,7 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
-    role = serializers.ChoiceField(choices=['Empleado', 'Viewer'], default='Viewer')  # Valor por defecto
+    role = serializers.ChoiceField(choices=['Empleado', 'Viewer'], default='Viewer')  #valor por defecto
 
 
     class Meta:
@@ -21,7 +21,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         """
-        Validación personalizada para asegurarse de que los campos obligatorios estén presentes.
+        validación personalizada para asegurarse de que los campos obligatorios esten presentes
         """
         if not data.get('first_name'):
             raise serializers.ValidationError("El campo 'first_name' es obligatorio.")
@@ -30,8 +30,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
-        print("Datos validados:", validated_data)  # Verifica los datos recibidos
-        role = validated_data.get('role', 'Viewer')  # Usar el valor por defecto solo si no está presente
+        print("Datos validados:", validated_data)  #verifica los datos recibidos
+        role = validated_data.get('role', 'Viewer')  #usar el valor por defecto solo si no esta presente
         user = CustomUser.objects.create_user(
             username=validated_data['username'],
             email=validated_data['email'],
@@ -41,7 +41,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             second_last_name=validated_data.get('second_last_name', '')
         )
 
-        # Asignar el grupo basado en el rol proporcionado
+        # asignar el grupo basado en el rol proporcionado
         group = Group.objects.get(name=role)
         user.groups.add(group)
 

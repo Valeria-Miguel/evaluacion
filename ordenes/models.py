@@ -1,9 +1,8 @@
-# models.py en orders
 from django.db import models
-from flowers.models import Flower  # Relación con las flores
+from flowers.models import Flower  #relacion con las flores
 from django.utils import timezone
 
-# Cliente (No relacionado con los usuarios)
+#cliente (no relacionado con los usuarios)
 class Client(models.Model):
     nombre = models.CharField(max_length=255)
     direccion = models.TextField()
@@ -14,7 +13,7 @@ class Client(models.Model):
     def __str__(self):
         return self.nombre
 
-# Orden (Cada cliente puede tener muchas órdenes)
+# orden cada cliente puede tener muchas prdenes
 class Order(models.Model):
     ESTADOS = [
         ('pendiente', 'Pendiente'),
@@ -30,7 +29,7 @@ class Order(models.Model):
     def __str__(self):
         return f"Orden #{self.id} - {self.cliente.nombre}"
 
-# Detalle de la orden (Cada orden puede tener múltiples flores)
+#detalle de la orden cada orden puede tener múltiples flores
 class OrderDetail(models.Model):
     orden = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='detalles')
     flor = models.ForeignKey(Flower, on_delete=models.CASCADE)

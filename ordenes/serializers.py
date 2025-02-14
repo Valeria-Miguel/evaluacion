@@ -1,26 +1,25 @@
-# serializers.py en orders
 from rest_framework import serializers
 from .models import Order, Client, OrderDetail
 from flowers.serializers import FlowerSerializer
 
-# Serializador para el Cliente
+#serializador para el cliente
 class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
         fields = '__all__'
 
-# Serializador para el Detalle de la Orden
+#serializador para el Detalle de la orden
 class OrderDetailSerializer(serializers.ModelSerializer):
-    flor = FlowerSerializer()  # Incluimos los detalles de la flor
+    flor = FlowerSerializer()  # incluimos los detalles de la flor
 
     class Meta:
         model = OrderDetail
         fields = ['flor', 'cantidad', 'precio_unitario']
 
-# Serializador para la Orden
+#serializador para la orden
 class OrderSerializer(serializers.ModelSerializer):
-    cliente = ClientSerializer()  # Información del cliente
-    detalles = OrderDetailSerializer(many=True)  # Relación de flores
+    cliente = ClientSerializer()  # informacion del cliente
+    detalles = OrderDetailSerializer(many=True)  #relaci´on de flores
 
     class Meta:
         model = Order

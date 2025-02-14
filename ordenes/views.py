@@ -1,36 +1,35 @@
-# views.py en orders
 from rest_framework import generics
 from .models import Order, Client, OrderDetail
 from .serializers import OrderSerializer, ClientSerializer
 from rest_framework.permissions import IsAuthenticated
-from users.permissions import IsAdminOnly  # Para controlar acceso
+from users.permissions import IsAdminOnly  #para controlar acceso
 
-# Ver las órdenes de todos los clientes (Administrador o Empleado)
+#ver las órdenes de todos los clientes administrador o empleado
 class OrderListView(generics.ListAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = [IsAuthenticated]  # Solo usuarios autenticados pueden ver
+    permission_classes = [IsAuthenticated]  #solo usuarios autenticados pueden ver
 
-# Crear una nueva orden (Cualquier usuario autenticado puede crear)
+#crear una nueva orden calquier usuario autenticado puede crear
 class OrderCreateView(generics.CreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = [IsAuthenticated]  # Solo usuarios autenticados pueden crear
+    permission_classes = [IsAuthenticated]  # Solo usuarios autenticados 
 
-# Ver detalles de una orden específica
+# ver detalles 
 class OrderDetailView(generics.RetrieveAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = [IsAuthenticated]  # Solo usuarios autenticados pueden ver
+    permission_classes = [IsAuthenticated]  #slo usuarios autenticados pueden ver
 
-# Modificar una orden (Solo Admin o Empleado)
+# modificar solo Admin o Empleado
 class OrderUpdateView(generics.UpdateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = [IsAuthenticated, IsAdminOnly]  # Solo admin puede modificar
+    permission_classes = [IsAuthenticated, IsAdminOnly]  #solo admin puede modificar
 
-# Eliminar una orden (Solo Admin)
+# eliminar solo Admin
 class OrderDeleteView(generics.DestroyAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = [IsAuthenticated, IsAdminOnly]  # Solo admin puede eliminar
+    permission_classes = [IsAuthenticated, IsAdminOnly]  #solo admin puede eliminar
