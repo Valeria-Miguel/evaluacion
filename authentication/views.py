@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render #para manejar la autenticacion JWT
 
-# Create your views here.
+
 from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
+    TokenObtainPairView, #obtener  los tokens
+    TokenRefreshView, #refrescar el access token con un refresh token
+
 )
